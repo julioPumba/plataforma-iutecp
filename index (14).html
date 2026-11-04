@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plataforma Académica IUTECP Guatire · Devs Crack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#25255E;
+  --surface:#2E2E70;
+  --ink:#FFFFFF;
+  --muted:#C2C3EC;
+  --line:#41418C;
+  --pine:#F6D531;
+  --emerald:#F6D531;
+  --mint:#38388A;
+  --lime:#F6D531;
+  --deep:#1B1B48;
+  --on-accent:#1E1E50;
+  --warn:#FFB547;
+  --danger:#FF7A66;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#25255E; --surface:#2E2E70; --ink:#FFFFFF; --muted:#C2C3EC; --line:#41418C;
+    --pine:#F6D531; --emerald:#F6D531; --mint:#38388A; --lime:#F6D531;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#25255E; --surface:#2E2E70; --ink:#FFFFFF; --muted:#C2C3EC; --line:#41418C;
+  --pine:#F6D531; --emerald:#F6D531; --mint:#38388A; --lime:#F6D531;
+  color-scheme: dark;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px)}
+img,svg{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--emerald);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+
+/* Header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-name{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;line-height:1}
+.brand-name small{display:block;font-family:var(--body);font-weight:500;font-size:.72rem;color:var(--muted);letter-spacing:0;margin-top:3px}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;color:var(--muted);font-weight:500}
+.nav ul a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 1rem var(--body);border:0;border-radius:999px;padding:12px 22px;cursor:pointer;text-decoration:none}
+.btn-primary{background:var(--pine);color:var(--on-accent)}
+.btn-primary:hover{background:#FFE46B}
+.brand svg rect{fill:#F6D531}
+.brand svg path{stroke:#25255E}
+body{background:linear-gradient(170deg,#2A2A6C 0%,#25255E 45%,#1E1E50 100%) fixed}
+.hero h1{color:var(--pine)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--emerald)}
+
+/* Hero */
+.hero{padding:64px 0 72px}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.3rem,5.2vw,4rem);line-height:1.02;letter-spacing:-.035em;margin:0 0 22px}
+.hero p.lead{font-size:1.15rem;color:var(--muted);max-width:34em;margin:0 0 30px}
+.campus{display:inline-flex;align-items:center;gap:8px;background:var(--mint);color:var(--pine);font-weight:600;font-size:.9rem;padding:6px 14px;border-radius:999px;margin-bottom:22px}
+.campus i{width:8px;height:8px;border-radius:50%;background:var(--emerald);display:block}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+
+/* Panel interactivo */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:0 30px 60px -28px rgba(0,0,0,.55)}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.panel-head h2{font-family:var(--display);font-size:1.2rem;margin:0;letter-spacing:-.01em}
+.week{display:flex;gap:6px;margin-bottom:18px;overflow-x:auto}
+.day{flex:1;min-width:52px;border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:14px;padding:8px 4px;cursor:pointer;font:500 .8rem var(--body);text-align:center}
+.day b{display:block;font-family:var(--display);font-size:1.25rem}
+.day[aria-pressed="true"]{background:var(--pine);border-color:var(--pine);color:var(--on-accent)}
+.tasks{list-style:none;margin:0;padding:0;display:grid;gap:10px;min-height:208px}
+.task{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:var(--bg)}
+.task input{width:20px;height:20px;accent-color:var(--emerald);flex:none}
+.task .t{flex:1;min-width:0}
+.task .t strong{display:block;font-weight:600}
+.task .t span{font-size:.85rem;color:var(--muted)}
+.task.done .t strong{text-decoration:line-through;color:var(--muted)}
+.tag{font-size:.75rem;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.tag.eval{background:color-mix(in srgb,var(--danger) 16%,transparent);color:var(--danger)}
+.tag.act{background:color-mix(in srgb,var(--emerald) 18%,transparent);color:var(--pine)}
+.tag.ent{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+:root[data-theme="dark"] .tag.ent{color:var(--warn)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tag.ent{color:var(--warn)}}
+.empty{color:var(--muted);text-align:center;padding:48px 10px}
+.progress{margin-top:18px}
+.progress-top{display:flex;justify-content:space-between;font-size:.88rem;color:var(--muted);margin-bottom:8px}
+.bar{height:10px;border-radius:999px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#F6D531,#FFF0A0);border-radius:inherit;transition:width .4s ease}
+
+/* Secciones */
+section.block{padding:80px 0;border-top:1px solid var(--line)}
+.block h2.title{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,3.6vw,2.7rem);letter-spacing:-.03em;line-height:1.08;margin:0 0 14px;max-width:18em}
+.block p.sub{color:var(--muted);max-width:40em;margin:0 0 44px}
+
+.features{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--surface)}
+.feature{padding:32px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.feature:nth-child(2n){border-right:0}
+.feature:nth-last-child(-n+2){border-bottom:0}
+.feature svg{width:40px;height:40px;color:var(--emerald);margin-bottom:14px}
+.feature h3{font-family:var(--display);font-size:1.3rem;margin:0 0 8px;letter-spacing:-.01em}
+.feature p{margin:0;color:var(--muted)}
+
+/* Roles con pestañas */
+.tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.tab{font:600 1rem var(--body);padding:10px 20px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.role{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;background:var(--mint);border-radius:28px;padding:40px}
+.role h3{font-family:var(--display);font-size:1.8rem;margin:0 0 10px;letter-spacing:-.02em;color:var(--pine)}
+.role p{margin:0;color:var(--ink)}
+.role ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.role li{display:flex;gap:10px;align-items:flex-start}
+.role li::before{content:"";flex:none;width:18px;height:18px;margin-top:4px;border-radius:50%;background:var(--emerald) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E1E50' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/12px no-repeat}
+
+/* Pasos */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+.step{counter-increment:s;padding-top:18px;border-top:3px solid var(--emerald)}
+.step::before{content:counter(s);font-family:var(--display);font-weight:800;font-size:2.4rem;color:var(--emerald);line-height:1}
+.step h3{font-family:var(--display);font-size:1.2rem;margin:10px 0 6px}
+.step p{margin:0;color:var(--muted)}
+
+/* CTA final */
+.final{background:var(--deep);color:#fff;border:1px solid var(--line);border-radius:32px;padding:56px 48px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+.final h2{color:var(--pine)}
+.final h2{font-family:var(--display);font-size:clamp(1.7rem,3.4vw,2.5rem);margin:0 0 8px;letter-spacing:-.03em;line-height:1.1}
+.final p{margin:0;opacity:.85;max-width:32em}
+.final .btn{background:var(--lime);color:var(--on-accent)}
+.final .btn:hover{background:#fff}
+
+footer{padding:40px 0 48px;color:var(--muted);font-size:.92rem}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+
+[hidden]{display:none!important}
+/* Login */
+.login{min-height:100vh;min-height:100dvh;display:grid;grid-template-columns:1fr 1fr}
+.login-side{background:var(--deep);color:#fff;padding:48px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.login-side h2{color:var(--pine)}
+.login-side::after{content:"";position:absolute;left:48px;right:48px;bottom:0;height:4px;background:var(--pine)}
+.login-side .brand-name small{color:rgba(255,255,255,.75)}
+.login-side h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,3.4vw,2.9rem);line-height:1.05;letter-spacing:-.03em;margin:0 0 16px;max-width:15em;position:relative}
+.login-side p{margin:0;opacity:.85;max-width:30em;position:relative}
+.login-side .deco{position:absolute;right:-60px;bottom:-60px;width:340px;height:340px;opacity:.12}
+.login-main{display:flex;align-items:center;justify-content:center;padding:40px 24px}
+.login-card{width:100%;max-width:420px}
+.login-card h1{font-family:var(--display);font-weight:800;font-size:2.2rem;letter-spacing:-.03em;margin:0 0 6px}
+.login-card > p{color:var(--muted);margin:0 0 28px}
+.login-card .brand{margin-bottom:28px}
+.login-card .brand.mobile{display:none}
+fieldset{border:0;margin:0 0 22px;padding:0}
+legend{font-weight:600;margin-bottom:10px}
+.roles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.role-opt{position:relative}
+.role-opt input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.role-opt span{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:16px;border:1.5px solid var(--line);border-radius:18px;background:var(--surface);cursor:pointer;font-weight:600}
+.role-opt span svg{width:28px;height:28px;color:var(--emerald)}
+.role-opt span small{font-weight:400;color:var(--muted);font-size:.82rem}
+.role-opt input:checked + span{border-color:var(--emerald);background:var(--mint);box-shadow:0 0 0 3px color-mix(in srgb,var(--emerald) 25%,transparent)}
+.role-opt input:focus-visible + span{outline:3px solid var(--emerald);outline-offset:3px}
+.field{margin-bottom:16px}
+.field label{display:block;font-weight:600;margin-bottom:6px}
+.field .inp{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:14px;background:var(--surface)}
+.field .inp:focus-within{border-color:var(--emerald)}
+.field input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:500 1rem var(--body);padding:13px 14px;outline:none}
+.field .prefix{padding-left:14px;color:var(--muted);font-weight:600}
+.toggle-pw{border:0;background:transparent;color:var(--pine);font:600 .88rem var(--body);padding:0 14px;cursor:pointer}
+.login-row{display:flex;justify-content:space-between;align-items:center;margin:4px 0 22px;font-size:.92rem}
+.login-row label{display:flex;align-items:center;gap:8px;color:var(--muted)}
+.login-row input{accent-color:var(--emerald);width:16px;height:16px}
+.login-row a{color:var(--pine);font-weight:600;text-decoration:none}
+.error{color:var(--danger);font-size:.92rem;font-weight:500;min-height:1.4em;margin:0 0 10px}
+.btn-block{width:100%;justify-content:center;padding:15px}
+.login-note{color:var(--muted);font-size:.85rem;text-align:center;margin-top:18px}
+.who{display:inline-flex;align-items:center;gap:10px}
+.who-name{font-weight:600;font-size:.92rem;color:var(--muted)}
+@media (max-width:900px){
+  .login{grid-template-columns:1fr}
+  .login-side{display:none}
+  .login-card .brand.mobile{display:flex}
+  .who-name{display:none}
+}
+
+@media (max-width:900px){
+  .hero-grid,.role{grid-template-columns:1fr}
+  .nav ul{display:none}
+  .steps{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .features{grid-template-columns:1fr}
+  .feature{border-right:0!important;border-bottom:1px solid var(--line)!important}
+  .feature:last-child{border-bottom:0!important}
+  .role,.final{padding:28px 22px}
+  .hero{padding-top:40px}
+  .nav .btn{padding:10px 16px;font-size:.9rem}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<section class="login" id="login">
+  <div class="login-side">
+    <div class="brand">
+      <svg width="42" height="42" viewBox="0 0 48 48" aria-hidden="true">
+        <rect x="2" y="2" width="44" height="44" rx="13" fill="#fff"/>
+        <path d="M17 15 L9 24 L17 33" fill="none" stroke="#0E5A3A" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M31 15 L39 24 L31 33" fill="none" stroke="#0E5A3A" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M26.5 11 L21 22.5 L27 25.5 L21.5 37" fill="none" stroke="#14A06B" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-name">Devs Crack<small>Plataforma académica IUTECP</small></span>
+    </div>
+    <div>
+      <h2>Organiza y controla tus actividades académicas y evaluaciones.</h2>
+      <p>Plataforma web interactiva para estudiantes y profesores del IUTECP, Guatire.</p>
+    </div>
+    <svg class="deco" viewBox="0 0 48 48" aria-hidden="true"><path d="M17 15 L9 24 L17 33M31 15 L39 24 L31 33M26.5 11 L21 22.5 L27 25.5 L21.5 37" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+
+  <div class="login-main">
+    <div class="login-card">
+      <div class="brand mobile">
+        <svg width="42" height="42" viewBox="0 0 48 48" aria-hidden="true">
+          <rect x="2" y="2" width="44" height="44" rx="13" fill="var(--pine)"/>
+          <path d="M17 15 L9 24 L17 33" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M31 15 L39 24 L31 33" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M26.5 11 L21 22.5 L27 25.5 L21.5 37" fill="none" stroke="var(--lime)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-name">Devs Crack<small>Plataforma académica IUTECP</small></span>
+      </div>
+      <h1>Inicia sesión</h1>
+      <p>Ingresa con tus datos del IUTECP, Guatire.</p>
+
+      <form id="login-form" novalidate>
+        <fieldset>
+          <legend>¿Cómo ingresas?</legend>
+          <div class="roles">
+            <label class="role-opt">
+              <input type="radio" name="rol" value="estudiante">
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 9L12 4 2 9l10 5 10-5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
+                Estudiante<small>Ver clases, entregas y notas</small>
+              </span>
+            </label>
+            <label class="role-opt">
+              <input type="radio" name="rol" value="profesor">
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M7 9h6M7 12h4"/></svg>
+                Profesor<small>Gestionar secciones y evaluaciones</small>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="cedula">Cédula de identidad</label>
+          <div class="inp"><span class="prefix">V-</span><input id="cedula" inputmode="numeric" autocomplete="username" placeholder="28123456" maxlength="9"></div>
+        </div>
+        <div class="field">
+          <label for="clave">Contraseña</label>
+          <div class="inp"><input id="clave" type="password" autocomplete="current-password" placeholder="Tu contraseña"><button type="button" class="toggle-pw" id="toggle-pw">Mostrar</button></div>
+        </div>
+        <div class="login-row">
+          <label><input type="checkbox"> Recordarme</label>
+          <a href="#" onclick="document.getElementById('err').textContent='Solicita una nueva contraseña en Control de Estudios.';return false">¿Olvidaste tu contraseña?</a>
+        </div>
+        <p class="error" id="err" role="alert"></p>
+        <button class="btn btn-primary btn-block" type="submit" id="login-btn">Entrar</button>
+      </form>
+      <p class="login-note">Versión de demostración: cualquier cédula y contraseña válidas permiten el acceso.</p>
+    </div>
+  </div>
+</section>
+
+<div id="app" hidden>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#inicio" aria-label="Devs Crack, inicio">
+      <svg width="42" height="42" viewBox="0 0 48 48" aria-hidden="true">
+        <rect x="2" y="2" width="44" height="44" rx="13" fill="var(--pine)"/>
+        <path d="M17 15 L9 24 L17 33" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M31 15 L39 24 L31 33" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M26.5 11 L21 22.5 L27 25.5 L21.5 37" fill="none" stroke="var(--lime)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-name">Devs Crack<small>Plataforma académica IUTECP</small></span>
+    </a>
+    <ul>
+      <li><a href="#funciones">Funciones</a></li>
+      <li><a href="#roles">Para quién</a></li>
+      <li><a href="#como">Cómo funciona</a></li>
+    </ul>
+    <div class="who"><span class="who-name" id="who-name"></span><button class="btn btn-ghost" id="logout" type="button">Cerrar sesión</button></div>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="campus" id="campus"><i></i>IUTECP · Guatire, Miranda</span>
+        <h1>Tus clases, entregas y evaluaciones en un solo lugar.</h1>
+        <p class="lead">Plataforma web interactiva para organizar y controlar las actividades académicas y evaluaciones de los estudiantes del IUTECP, Guatire. Consulta tu semana, marca lo que ya hiciste y sigue tu avance en cada materia.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#acceso">Entrar a mi cuenta</a>
+          <a class="btn btn-ghost" href="#funciones">Ver funciones</a>
+        </div>
+      </div>
+
+      <div class="panel" aria-labelledby="agenda-title">
+        <div class="panel-head">
+          <h2 id="agenda-title">Mi semana</h2>
+          <span class="tag act" id="semana-label">Lapso II · Semana 6</span>
+        </div>
+        <div class="week" role="group" aria-label="Elegir día"></div>
+        <ul class="tasks" aria-live="polite"></ul>
+        <div class="progress">
+          <div class="progress-top"><span>Avance de la semana</span><span id="pct">0%</span></div>
+          <div class="bar"><i id="bar"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="funciones">
+    <div class="wrap">
+      <h2 class="title">Todo lo que necesitas para llevar el control del semestre</h2>
+      <p class="sub">Pensada para el día a día del instituto: menos hojas sueltas y grupos de mensajería, más claridad sobre qué toca y cuándo.</p>
+      <div class="features">
+        <article class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18M8 14h3M8 17h6"/></svg>
+          <h3>Calendario académico</h3>
+          <p>Clases, entregas y evaluaciones organizadas por día y por materia, con recordatorios antes de cada fecha.</p>
+        </article>
+        <article class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h9"/></svg>
+          <h3>Control de actividades</h3>
+          <p>Marca tareas como completadas, adjunta tus entregas y ve qué te falta en cada unidad.</p>
+        </article>
+        <article class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+          <h3>Notas y evaluaciones</h3>
+          <p>Consulta tus calificaciones por corte, el peso de cada evaluación y tu promedio actualizado.</p>
+        </article>
+        <article class="feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg>
+          <h3>Avisos del docente</h3>
+          <p>Cambios de fecha, material de clase y comunicados llegan directo a tu panel, sin perderse en chats.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="roles">
+    <div class="wrap">
+      <h2 class="title">Una plataforma, tres maneras de usarla</h2>
+      <p class="sub">Cada persona ve lo que le corresponde según su rol en el instituto.</p>
+      <div class="tabs" role="tablist" aria-label="Roles"></div>
+      <div class="role" role="tabpanel" id="role-panel"></div>
+    </div>
+  </section>
+
+  <section class="block" id="como">
+    <div class="wrap">
+      <h2 class="title">Empezar toma pocos minutos</h2>
+      <p class="sub">La coordinación carga las secciones; tú solo entras y comienzas.</p>
+      <div class="steps">
+        <div class="step"><h3>Ingresa con tu cédula</h3><p>Usa tu número de cédula y la clave asignada por control de estudios.</p></div>
+        <div class="step"><h3>Revisa tus materias</h3><p>Tus secciones del lapso actual aparecen cargadas con su plan de evaluación.</p></div>
+        <div class="step"><h3>Lleva tu avance</h3><p>Marca actividades, sube entregas y sigue tus notas a lo largo del semestre.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="acceso" style="border-top:0;padding-top:20px">
+    <div class="wrap">
+      <div class="final">
+        <div>
+          <h2>¿Listo para organizar tu semestre?</h2>
+          <p>Accede con tus datos del IUTECP y ten tus actividades y evaluaciones bajo control.</p>
+        </div>
+        <a class="btn" href="#inicio">Entrar a mi cuenta</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Plataforma Académica IUTECP, Guatire.</span>
+    <span>Desarrollado por <strong style="color:var(--ink)">Devs Crack</strong></span>
+  </div>
+</footer>
+</div>
+
+<script>
+const days = [
+  {d:"Lun",n:19,items:[
+    {t:"Matemática II",s:"Taller de integrales · 7:00 a. m.",k:"act"},
+    {t:"Programación I",s:"Entrega de práctica 3 · 11:59 p. m.",k:"ent"}]},
+  {d:"Mar",n:20,items:[
+    {t:"Base de datos",s:"Examen parcial · Aula 12",k:"eval"},
+    {t:"Inglés técnico",s:"Lectura unidad 4",k:"act"}]},
+  {d:"Mié",n:21,items:[
+    {t:"Sistemas operativos",s:"Exposición en grupo · 9:00 a. m.",k:"eval"},
+    {t:"Programación I",s:"Clase práctica en laboratorio",k:"act"},
+    {t:"Matemática II",s:"Guía de ejercicios",k:"ent"}]},
+  {d:"Jue",n:22,items:[
+    {t:"Redes",s:"Quiz corto · 10:00 a. m.",k:"eval"}]},
+  {d:"Vie",n:23,items:[]}
+];
+const labels={act:"Actividad",ent:"Entrega",eval:"Evaluación"};
+let sel=2;
+const weekEl=document.querySelector(".week"),list=document.querySelector(".tasks");
+
+function renderWeek(){
+  weekEl.innerHTML="";
+  days.forEach((x,i)=>{
+    const b=document.createElement("button");
+    b.className="day";b.setAttribute("aria-pressed",i===sel);
+    b.innerHTML=`${x.d}<b>${x.n}</b>`;
+    b.onclick=()=>{sel=i;renderWeek();renderTasks();};
+    weekEl.appendChild(b);
+  });
+}
+function renderTasks(){
+  const items=days[sel].items;
+  list.innerHTML="";
+  if(!items.length){list.innerHTML='<li class="empty">Día libre. Aprovecha para adelantar tus entregas.</li>';return;}
+  items.forEach((it,j)=>{
+    const li=document.createElement("li");
+    li.className="task"+(it.done?" done":"");
+    const id=`c${sel}-${j}`;
+    li.innerHTML=`<input type="checkbox" id="${id}" ${it.done?"checked":""}>
+      <label class="t" for="${id}"><strong>${it.t}</strong><span>${it.s}</span></label>
+      <span class="tag ${it.k}">${labels[it.k]}</span>`;
+    li.querySelector("input").onchange=e=>{it.done=e.target.checked;li.classList.toggle("done",it.done);updateProgress();};
+    list.appendChild(li);
+  });
+}
+function updateProgress(){
+  const all=days.flatMap(d=>d.items),done=all.filter(i=>i.done).length;
+  const p=Math.round(done/all.length*100);
+  document.getElementById("pct").textContent=`${p}% · ${done} de ${all.length}`;
+  document.getElementById("bar").style.width=p+"%";
+}
+renderWeek();renderTasks();updateProgress();
+
+const roles=[
+  {n:"Estudiantes",h:"Tu semestre, claro y a la vista",p:"Sabes qué entregar, cuándo es cada evaluación y cómo vas en cada materia.",l:["Agenda semanal con clases y entregas","Notas por corte y promedio actualizado","Recordatorios de evaluaciones próximas","Historial de actividades completadas"]},
+  {n:"Docentes",h:"Planifica y evalúa sin papeleo",p:"Carga tu plan de evaluación una vez y la plataforma lo organiza para tus secciones.",l:["Plan de evaluación por sección","Registro de notas y asistencia","Revisión de entregas en línea","Avisos directos a tus estudiantes"]},
+  {n:"Coordinación",h:"El panorama completo del instituto",p:"Seguimiento del avance académico por carrera, sección y lapso.",l:["Carga de secciones y docentes","Reportes de rendimiento por materia","Control del cumplimiento de evaluaciones","Exportación de actas de notas"]}
+];
+let r=0;
+const tabsEl=document.querySelector(".tabs"),panel=document.getElementById("role-panel");
+function renderRoles(){
+  tabsEl.innerHTML="";
+  roles.forEach((x,i)=>{
+    const b=document.createElement("button");
+    b.className="tab";b.setAttribute("role","tab");b.setAttribute("aria-selected",i===r);
+    b.setAttribute("aria-controls","role-panel");b.textContent=x.n;
+    b.onclick=()=>{r=i;renderRoles();};
+    tabsEl.appendChild(b);
+  });
+  const x=roles[r];
+  panel.innerHTML=`<div><h3>${x.h}</h3><p>${x.p}</p></div><ul>${x.l.map(i=>`<li>${i}</li>`).join("")}</ul>`;
+}
+renderRoles();
+
+/* Login */
+const form=document.getElementById("login-form"),err=document.getElementById("err");
+const ced=document.getElementById("cedula"),clave=document.getElementById("clave");
+ced.addEventListener("input",()=>{ced.value=ced.value.replace(/\D/g,"");});
+document.getElementById("toggle-pw").onclick=e=>{
+  const show=clave.type==="password";
+  clave.type=show?"text":"password";
+  e.target.textContent=show?"Ocultar":"Mostrar";
+};
+form.addEventListener("submit",e=>{
+  e.preventDefault();
+  const rol=form.querySelector('input[name="rol"]:checked');
+  if(!rol){err.textContent="Elige si ingresas como estudiante o profesor.";return;}
+  if(ced.value.length<6){err.textContent="Escribe tu cédula completa, entre 6 y 9 dígitos.";ced.focus();return;}
+  if(clave.value.length<4){err.textContent="La contraseña debe tener al menos 4 caracteres.";clave.focus();return;}
+  err.textContent="";
+  const esProf=rol.value==="profesor";
+  document.getElementById("who-name").textContent=(esProf?"Prof. ":"Est. ")+"V-"+ced.value;
+  document.getElementById("campus").innerHTML=`<i></i>Sesión de ${esProf?"profesor":"estudiante"} · IUTECP Guatire`;
+  document.getElementById("agenda-title").textContent=esProf?"Agenda de mis secciones":"Mi semana";
+  r=esProf?1:0;renderRoles();
+  document.getElementById("login").hidden=true;
+  document.getElementById("app").hidden=false;
+  window.scrollTo(0,0);
+});
+document.getElementById("logout").onclick=()=>{
+  form.reset();clave.type="password";document.getElementById("toggle-pw").textContent="Mostrar";
+  document.getElementById("app").hidden=true;
+  document.getElementById("login").hidden=false;
+  window.scrollTo(0,0);
+};
+</script>
+</body>
+</html>
